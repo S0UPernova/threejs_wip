@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "ignore": ["node_modules", ".next"],
+  "watch": ["server/**/*", "server.js", "src/*"],
+  "ext": "js json ts jsx tsx css glsl",
+  "exec": "vite",
+  "pollingInterval": 100,
+  "legacyWatch": true
+}

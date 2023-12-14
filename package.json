@@ -1,0 +1,22 @@
+{
+  "name": "three_d_stuff",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@types/three": "^0.159.0",
+    "nodemon": "^3.0.2",
+    "typescript": "^4.9.3",
+    "vite": "^4.0.0",
+    "vite-plugin-glsl": "^1.2.1"
+  },
+  "dependencies": {
+    "gsap": "^3.12.3",
+    "three": "^0.159.0"
+  }
+}
