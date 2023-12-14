@@ -5,7 +5,6 @@ import vertex from "./shader/vertex.glsl"
 
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
-import { randFloat } from 'three/src/math/MathUtils'
 
 const scene = new THREE.Scene()
 // Create sphere
