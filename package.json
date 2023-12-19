@@ -17,6 +17,8 @@
   },
   "dependencies": {
     "gsap": "^3.12.3",
+    "postprocessing": "^6.33.4",
+    "screen-space-reflections": "^2.5.0",
     "three": "^0.159.0"
   }
 }

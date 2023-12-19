@@ -9,14 +9,14 @@ export class Star {
 
   constructor(color?: THREE.ColorRepresentation) {
     // this.lastUpdate = Date.now()
-    this.geometry = new THREE.SphereGeometry(.1, 8, 8)
+    this.geometry = new THREE.SphereGeometry(this.getNumInRange(0.3, .8), 8, 8)
     this.color = color ?? this.setRandomIshColor()
     this.material = new THREE.MeshStandardMaterial({
       emissive: this.color,
       emissiveIntensity: 1
     })
     this.mesh = new THREE.Mesh(this.geometry, this.material)
-    this.mesh.translateX(100)
+    this.mesh.translateX(2000)
     this.group = new THREE.Group()
     this.group.add(this.mesh)
     this.group.rotateX(Math.random() * 360)
@@ -30,9 +30,9 @@ export class Star {
   }
   private setRandomIshColor() {
     return new THREE.Color(
-      this.getNumInRange(200, 150), // Red
-      this.getNumInRange(5),        // Green
-      this.getNumInRange(3)         // Blue
+      this.getNumInRange(200, 190), // Red
+      this.getNumInRange(200, 190),        // Green
+      this.getNumInRange(200, 190)         // Blue
     )
   }
   // public update(timestamp: number = Date.now()) {

@@ -1,7 +1,6 @@
 import * as THREE from "three"
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 import { FlakesTexture } from 'three/examples/jsm/textures/FlakesTexture.js'
-
 export class Spoon {
   public group: THREE.Group
   private loader: THREE.Loader
@@ -21,12 +20,12 @@ export class Spoon {
       emissive: 0x99ffff,
       emissiveIntensity: .1,
       clearcoat: 1.0,
-      clearcoatRoughness: 0.1,
+      clearcoatRoughness: 0.4,
       metalness: 0.7,
       roughness: 0.5,
       color: 0xaaffff,
       normalMap: texture,
-      normalScale: new THREE.Vector2(2, 4)
+      normalScale: new THREE.Vector2(2, 4),
     })
     
     this.loader = new GLTFLoader()

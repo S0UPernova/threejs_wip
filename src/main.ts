@@ -9,9 +9,13 @@ import { MyRenderer } from './components/renderer'
 import { Star } from './components/star'
 
 const scene = new THREE.Scene()
+const canvas: HTMLCanvasElement = document.querySelector<HTMLCanvasElement>('#canvas')!
+
+const renderer = new MyRenderer(canvas, scene, { width: window.innerWidth, height: window.innerHeight })
+
 const myLight = new MyLight()
 const spoon = new Spoon()
-const sun = new Sun()
+const sun = new Sun(renderer.renderTarget)
 
 function makeStars(n: number): Star[] {
   const arr: Star[] = []
@@ -20,12 +24,10 @@ function makeStars(n: number): Star[] {
   }
   return arr
 }
-const stars = makeStars(10000)
+const stars = makeStars(2000)
 
-scene.add(...[sun.mesh, spoon.group, ...myLight.lights], ...stars.map(star => star.group))
+scene.add(...[sun.group, spoon.group, ...myLight.lights], ...stars.map(star => star.group))
 
-const canvas: HTMLCanvasElement = document.querySelector<HTMLCanvasElement>('#canvas')!
-const renderer = new MyRenderer(canvas, scene, { width: window.innerWidth, height: window.innerHeight })
 
 // Resize
 window.addEventListener('resize', () => {

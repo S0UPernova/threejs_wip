@@ -9,7 +9,7 @@ export class MyLight {
   public lights: (THREE.AmbientLight | THREE.PointLight | THREE.SpotLight | THREE.DirectionalLight)[]
   constructor() {
     this.lastUpdate = Date.now()
-    this.pointLight = new THREE.PointLight(0xff8888, 100, 3000)
+    this.pointLight = new THREE.PointLight(0xff8888, 1000, 300)
     this.ambientLight = new THREE.AmbientLight(0xff8888, 10)
     this.lights = [this.pointLight, this.ambientLight]
     this.pointLight.position.x = 0
@@ -21,19 +21,13 @@ export class MyLight {
     const n = Math.max(Math.random() * max, min)
     return n
   }
-  private setRandomIshColor() {
-    this.pointLight.color = new THREE.Color(
-      this.getNumInRange(200, 150), // Red
-      this.getNumInRange(5),        // Green
-      this.getNumInRange(3)         // Blue
-    )
-  }
   public update(timestamp: number = Date.now()) {
     const delta = this.lastUpdate - timestamp
 
     const timeBetweenUpdates = 1000
     if (this.timeSinceLastColorUpdate > timeBetweenUpdates) {
-      this.setRandomIshColor()
+      // Add flicker
+      this.pointLight.intensity = this.getNumInRange(1000, 900)
       this.timeSinceLastColorUpdate = 0
       this.lastUpdate = Date.now()
     }
