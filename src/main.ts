@@ -15,16 +15,8 @@ const renderer = new MyRenderer(canvas, scene, { width: window.innerWidth, heigh
 
 const myLight = new MyLight()
 const spoon = new Spoon()
-const sun = new Sun(renderer.renderTarget)
-
-function makeStars(n: number): Star[] {
-  const arr: Star[] = []
-  for (let i = 0; i < n; i++) {
-    arr.push(new Star())
-  }
-  return arr
-}
-const stars = makeStars(2000)
+const sun = new Sun()
+const stars = new Array(2000).fill(true).map(() => new Star())
 
 scene.add(...[sun.group, spoon.group, ...myLight.lights], ...stars.map(star => star.group))
 

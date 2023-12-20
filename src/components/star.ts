@@ -9,9 +9,10 @@ export class Star {
 
   constructor(color?: THREE.ColorRepresentation) {
     // this.lastUpdate = Date.now()
-    this.geometry = new THREE.SphereGeometry(this.getNumInRange(0.3, .8), 8, 8)
+    this.geometry = new THREE.SphereGeometry(this.getNumInRange(0.5, 1.5), 1, 1)
     this.color = color ?? this.setRandomIshColor()
     this.material = new THREE.MeshStandardMaterial({
+      side: THREE.FrontSide,
       emissive: this.color,
       emissiveIntensity: 1
     })
@@ -31,12 +32,9 @@ export class Star {
   private setRandomIshColor() {
     return new THREE.Color(
       this.getNumInRange(200, 190), // Red
-      this.getNumInRange(200, 190),        // Green
-      this.getNumInRange(200, 190)         // Blue
+      this.getNumInRange(200, 190), // Green
+      this.getNumInRange(200, 190)  // Blue
     )
   }
-  // public update(timestamp: number = Date.now()) {
-  //   // todo add twinkle
 
-  // }
 }
