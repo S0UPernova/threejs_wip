@@ -5,27 +5,34 @@ export class Spoon {
   public group: THREE.Group
   private loader: THREE.Loader
   private lastUpdate: number
-  private spoon?: THREE.Mesh
-  constructor() {
+  // private stencilRef
+  public mesh?: THREE.Mesh
+  constructor(layer?: number) {
     this, this.lastUpdate = Date.now()
     this.group = new THREE.Group()
+    // this.stencilRef = 1
 
     const texture = new THREE.CanvasTexture(new FlakesTexture())
     texture.wrapS = THREE.RepeatWrapping
     texture.wrapT = THREE.RepeatWrapping
-    texture.repeat.x = 10
-    texture.repeat.y = 6
+    texture.repeat.x = 100
+    texture.repeat.y = 100
 
     const material = new THREE.MeshPhysicalMaterial({
       emissive: 0x99ffff,
-      emissiveIntensity: .1,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.4,
-      metalness: 0.7,
-      roughness: 0.5,
+      emissiveIntensity: .054,
+      clearcoat: 0.8,
+      clearcoatRoughness: 0.2,
+      metalness: .8,
+      roughness: 0.4,
       color: 0xaaffff,
       normalMap: texture,
-      normalScale: new THREE.Vector2(2, 4),
+      normalScale: new THREE.Vector2(4, 4),
+      bumpMap: texture,
+      bumpScale: 1,
+      aoMap: texture,
+      aoMapIntensity: 1,
+      anisotropyMap: texture,
     })
     
     this.loader = new GLTFLoader()
@@ -42,8 +49,11 @@ export class Spoon {
           node.material = material
           node.castShadow = true;
           node.receiveShadow = true;
-          node.translateX(20)
-          this.spoon = node
+          node.translateX(30)
+          if (layer) {
+            node.layers.set(layer)
+          }
+          this.mesh = node
         } else {
           node.layers.disableAll();
         }
@@ -55,8 +65,8 @@ export class Spoon {
     const delta: number = timestamp - this.lastUpdate
 
     this.group.rotateY((0.0001) * delta)
-    this?.spoon?.rotateX((0.0003) * delta)
-    this?.spoon?.rotateZ((0.0004) * delta)
+    this?.mesh?.rotateX((0.0003) * delta)
+    this?.mesh?.rotateZ((0.0004) * delta)
     this.lastUpdate = timestamp
   }
 }

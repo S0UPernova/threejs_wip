@@ -1,5 +1,8 @@
 import * as THREE from "three"
-
+interface Input {
+  color?: THREE.ColorRepresentation
+  layer?: number
+}
 export class Star {
   private geometry: THREE.SphereGeometry
   private material: THREE.MeshStandardMaterial
@@ -7,14 +10,31 @@ export class Star {
   public group: THREE.Group
   private color: THREE.ColorRepresentation
 
-  constructor(color?: THREE.ColorRepresentation) {
+  constructor(input?: Input) {
     // this.lastUpdate = Date.now()
     this.geometry = new THREE.SphereGeometry(this.getNumInRange(0.5, 1.5), 1, 1)
-    this.color = color ?? this.setRandomIshColor()
+    this.color = input?.color ?? this.setRandomIshColor()
     this.material = new THREE.MeshStandardMaterial({
       side: THREE.FrontSide,
       emissive: this.color,
-      emissiveIntensity: 1
+      emissiveIntensity: 1,
+      dithering: true,
+      // stencilRef: 1,
+      
+      // depthTest: true,
+      // dithering: true,
+      // stencilFunc: THREE.AlwaysStencilFunc,
+      // stencilFail: THREE.DecrementStencilOp,
+      // stencilZFail: THREE.DecrementStencilOp,
+      // stencilZPass: THREE.IncrementStencilOp,
+      // stencilFail: THREE.KeepStencilOp,
+      // stencilZFail: THREE.KeepStencilOp,
+      // stencilZPass: THREE.ReplaceStencilOp
+
+      // stencilFail: THREE.DecrementWrapStencilOp,
+      // stencilZFail: THREE.DecrementWrapStencilOp,
+      // stencilZPass: THREE.DecrementWrapStencilOp
+      // stencilFuncMask: THREE.AlwaysStencilFunc,
     })
     this.mesh = new THREE.Mesh(this.geometry, this.material)
     this.mesh.translateX(2000)
@@ -23,6 +43,10 @@ export class Star {
     this.group.rotateX(Math.random() * 360)
     this.group.rotateY(Math.random() * 360)
     this.group.rotateZ(Math.random() * 360)
+    if (input?.layer) {
+      this.mesh.layers.set(input.layer)
+      this.group.layers.set(input.layer)
+    }
   }
   private getNumInRange(max: number, min?: number,) {
     if (!min) min = 0

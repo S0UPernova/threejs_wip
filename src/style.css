@@ -5,12 +5,17 @@
 }
 
 body, html {
-  overflow: hidden;
+  /* min-height: 200vh; */
 }
 
-#canvas {
+#canvasContainer {
+  overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;
+  max-width: 100%;
+}
+
+#canvas {
   z-index: 1;
 }

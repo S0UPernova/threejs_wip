@@ -7,14 +7,18 @@ export class MyLight {
   public pointLight: THREE.PointLight
   public ambientLight: THREE.AmbientLight
   public lights: (THREE.AmbientLight | THREE.PointLight | THREE.SpotLight | THREE.DirectionalLight)[]
-  constructor() {
+  constructor(layer?: number) {
     this.lastUpdate = Date.now()
-    this.pointLight = new THREE.PointLight(0xff8888, 1000, 300)
-    this.ambientLight = new THREE.AmbientLight(0xff8888, 10)
+    this.pointLight = new THREE.PointLight(0xff8888, 50, 300, 1.8)
+    this.ambientLight = new THREE.AmbientLight(0xff8888, 20)
     this.lights = [this.pointLight, this.ambientLight]
     this.pointLight.position.x = 0
     this.pointLight.position.y = 0
     this.pointLight.position.z = 0
+    if (layer) {
+      this.pointLight.layers.set(layer)
+      this.ambientLight.layers.set(layer)
+    }
   }
   private getNumInRange(max: number, min?: number,) {
     if (!min) min = 0
