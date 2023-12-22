@@ -12,7 +12,7 @@ export class Star {
 
   constructor(input?: Input) {
     // this.lastUpdate = Date.now()
-    this.geometry = new THREE.SphereGeometry(this.getNumInRange(0.5, 1.5), 1, 1)
+    this.geometry = new THREE.SphereGeometry(this.getNumInRange(0.5, 2.5), 1, 1)
     this.color = input?.color ?? this.setRandomIshColor()
     this.material = new THREE.MeshStandardMaterial({
       side: THREE.FrontSide,

@@ -5,13 +5,13 @@ import * as THREE from "three"
 import { MyLight } from './components/light'
 import { Spoon } from './components/spoon'
 import { Sun } from './components/sun'
-import { MyRenderer } from './components/renderer'
+import { RenderManager } from './components/renderer'
 import { Star } from './components/star'
 
 const scene = new THREE.Scene()
 
 const canvas: HTMLCanvasElement = document.querySelector<HTMLCanvasElement>('#canvas')!
-const renderer = new MyRenderer(canvas, scene, { width: window.innerWidth, height: window.innerHeight})
+const renderer = new RenderManager(canvas, scene, { width: window.innerWidth, height: window.innerHeight})
 
 const myLight = new MyLight()
 const spoon = new Spoon()

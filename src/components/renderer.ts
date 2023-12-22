@@ -6,7 +6,7 @@ import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer
 import { FlakesTexture } from "three/examples/jsm/textures/FlakesTexture";
 
 type Sizes = { width: number, height: number }
-export class MyRenderer {
+export class RenderManager {
   private controls: OrbitControls
   private canvas: HTMLCanvasElement
   private lastUpdate: number
